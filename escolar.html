@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- GOOGLE FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;1,100;1,200;1,300;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css" />
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+
+    <!-- FIM DO GOOGLE FONTES -->
+    <title>Transporte escolar</title>
+    <link rel="stylesheet" href="styleEscolar.css">
+
+</head>
+<body>
+    <header>
+    <div class="interface">
+        <div class="logo">
+            <a href="#">
+                <img class="logo" src="template/novoLogo.png" alt="logo">
+            </a>
+        </div><!--logo-->
+    <nav class="menu desktop">
+        <ul>
+            <li><a href="https://www.google.com.br"target="_blank">Google</a></li>
+            <li><a href="https://www.detran.df.gov.br"target="_blank">Detran-DF</a></li>
+            <li><a href="https://cronotacografo.rbmlq.gov.br" target="_blank">Cronotacografo</a></li>
+            <li><a href="https://g.co/kgs/SrX7mK" target="_blank">Sintresc - DF</a></li>
+        </ul>
+    </nav>
+        <div class="Btn-Contato">
+        <a href="#">
+        <button>Contato</button>
+        </a>
+        </div>
+    </div><!--inteface-->
+<main>
+    <section class="topo-do-site">
+        <div class="interface">
+            <div class="flex">
+                <div class="txt-topo-site">
+                    <h1>MR Transporte escolar<span>.</span></h1>
+                    <p style="color: #fff;">
+                        A MR Transporte atua no residencial Santos Dumont desde 1998, com o serviço de transporte escolar.
+                Os irmãos Jozé Maria e Márcia, trabalham com carros credenciados juntos ao Detran - DF e demais órgãos de fiscalização,
+                trazendo para os pais ou responsávies a tranquilidade na ida e vinda de seu filho a escola.
+                    </p>
+                    <h2 style="color: #fff;">Pesquise aqui o seu transporte.</h2>
+                    <div class="Btn-Pesquisar">
+                        <a href="#">
+                            <p>Digite a cidade e o local onde mora o aluno(a):</p>
+                            <p>(Ex: Gama oeste)</p>
+                            <input type="text">
+                            
+                            <p>Digite a escola do aluno(a):</p>
+                            <input type="text">
+                            <form>
+                                <button id="btnExecutarCodigo">Pesquisar Transporte</button>
+                                
+                            </form>
+                           
+                            
+                    </div><!--btn-contato-->        
+                </div><!--txt-topo-site-->
+
+                <div class="img-topo-site">
+                    <img src="template/MarciaVan.png" alt="motorista", style="height:300px; padding-top: 40px; justify-content: center; border-radius: 50%;"
+                </div>
+                <!--img-topo-site-->
+                
+                
+            </div><!--flex-->    
+        </div><!--interface-->
+
+    </section><!--topo-do-site-->
+    <section class="formulario">
+        <div class="interface">
+            <h1>Fale com <span>Tia Márcia.</span></h1>  
+            <form action="https://api.staticforms.xyz/submit" method="post">
+                <input type="hidden" name="accessKey" value="3c0678a5-55f1-45fa-ba13-8a28a7951609">
+                <input type="hidden" name="redirectTo" value="#">
+                <input type="text" id="inputName" name="name" placeholder="Digite seu nome:" required>
+                <input type="text" id="inputEmail" name="email" placeholder="Digite seu e-mail:" required>
+                <input type="text" id="inputCelular" name="celular" placeholder="Digite seu celular:">
+                <!--<textarea name="text" id="inputMensagem" name="message" placeholder="Digite sua mensagem" required></textarea>-->
+                <textarea name="message" placeholder="Digite sua mensagem" required></textarea>
+                <div class="btn-enviar"><input type="submit" value= "Enviar"></div>
+            </form>              
+        </div><!--interface-->
+
+    </section><!--formulario-->
+    <py-script>
+        document.getElementsByClassName('PesquisarTransporte.py').addEventListener('onclick', function(post) {
+            fetch('/localizarTransporte.py')
+                .then(response => response.text())
+                .then(data => alert(data))
+                .catch(error => console.error('Erro:', error));
+        });
+    </py-script>
+        
+</main>    
+    <footer>
+        <div class="interface">
+            
+            <div class="line-footer">
+                <div class="flex">    
+                <div class="logo-footer">
+                    <img class="logo" src="imagens/novoLogo.png" alt="logo">   
+                </div><!--logo-footer-->
+                <div class="logo-footer">
+                <h3>Transporte escolar</h3>
+                <p><i clas= "bi bi-whatsapp"></i> (61) 98497-1203</p>    
+                </div>
+            </div><!--line-footer-->
+                  
+                <div class="line-footer borda">
+                <p><i class="bi bi-envelope-fill"></i> <a href= "mailto:marcia.bacelar09@gmail.com">marcia.bacelar09@gmail.com</a></p>
+                <p>By Ricardo Bacelar</p>
+                </div>
+            </div><!--line-footer Inf-->
+            </div>
+        </div><!--interface-->
+        
+    </footer>
+
+</head>
+</body>
+</html>

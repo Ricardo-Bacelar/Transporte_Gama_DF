@@ -1,0 +1,220 @@
+/* ESTILO GERAL */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+header .logo{
+    width: 50px;
+}
+body{
+    background-color: #000;
+    height: 100vh;
+    padding-top: 20px;
+}
+
+
+.interface{
+    max-width: 1280px;
+    margin: 0 auto;
+
+}
+.flex{
+    display: flex;
+}
+.Btn-Contato button{
+    padding: 10Px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #00ff08;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    }
+/* ESTILO DO CABEÇALHO*/
+.header{
+    padding: 40px 4%;
+}
+header .interface{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header a{
+    color: #7d7d7d;
+    text-decoration: none;
+    display: inline-block;
+    transition: 2s;
+    
+}
+header a:hover{
+    color: #fff;
+    transform: scale(1.05);
+}
+header nav ul{
+    list-style-type: none;
+
+}
+header nav ul li{
+    display: inline-block;
+    padding: 0 40px;
+    
+}
+
+
+
+.Btn-Contato button .hover{
+    box-shadow: 0px 0px 8px #00ff08bb;
+    transform: scale(1.05);
+
+}
+/* TOPO DO SITE*/
+section .topo-do-site{
+padding: 40px 4%;
+
+}
+section .topo-do-site .flex{
+    align-items: flex-end;
+    justify-content: center;
+    gap: 90px;
+}
+.topo-do-site h1{
+    color: #fff;
+    font-size: 42px;
+    line-height: 40px;
+    margin-top: 50px;
+    
+}
+.topo-do-site .txt-topo-site h1 span{
+    color: #00ff08;
+}
+
+.topo-do-site .txt-topo-site p{
+    color: #080202;
+    margin: 10px 0;
+}
+.topo-do-site .img-topo-site img{
+    position: relative;
+    animation: flutuar 3s ease-in-out infinite alternate;
+    height: 300px;
+    border-radius: 50%;
+    margin-top: 100px;
+}
+
+@keyframes flutuar{ 
+    0% {top: 0;}
+    100%{top: 30px;}
+}
+/* Etilo formuláio*/
+section.formulario{
+    padding: 80px 4%;
+
+}
+
+form{
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+
+}
+form input, form textarea{
+    width: 100%;
+    background-color: #242424;
+    border: 0;
+    outline: 0;
+    padding: 20px 15px;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 18px;
+}
+form input::placeholder{
+    color: #fff;
+}
+form textarea{
+    color: #00ff08;
+    resize: none;
+    max-height: 200px;
+}
+form .btn-enviar{
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 700;
+    
+    transform: scale(1.05);
+}
+form .btn-enviar input{
+    width: 120px;
+    color: #000;
+    background-color: #00ff08;
+    transition: .2s;
+    cursor: pointer;
+    
+}
+h1{
+    color: #fff;
+    text-align: center;
+    
+}
+h1 span{
+    color: #00ff08;
+}
+
+/* estilo do rodape */
+footer{
+    padding: 10px 4%;
+    box-shadow: 0 0 40px 10px #ffffff1d;
+}
+
+footer .flex{
+    justify-content: center;
+
+}
+
+
+footer .line-footer{
+    padding: 20px 0;
+    justify-content: space-around;
+    
+}
+.borda{
+    border-top: 2px solid #00ff08;
+    color: #fff;
+    font-size: 10px;
+    
+}
+footer .line-footer p i{
+    color: #00ff08;
+    font-size: 22px;
+}
+footer .logo-footer p i{
+    color: #00ff08;
+    font-size: 22px;
+    justify-content: space-around;
+}
+footer h3{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
+footer .line-footer p a{
+    color: #fff;
+    font-size: 10px;
+    
+}
+.logo-footer{
+    color: #fff;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;;
+   
+}
+.logo-footer .logo{
+    width: 50px;
+}
+.logo-footer .logo h3 p{
+    margin: auto;
+}
+    /* fim do rodape */
+    

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transporte Escolar</title>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+            
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            border-radius: 50px;
+        }
+        .input-group select, .input-group button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 50px;
+        }
+        
+    </style>
+</head>
+<body>
+        <img src="Imagens/novoLogo.png" alt="logo">
+    
+           <h1 class="titulo">Márcia e Ricardo transporte escolar</h1>
+        <h1>Pesquise aqui o transporte do seu filho na cidade do Gama e entorno</h1>
+
+    <div class="container">
+        <div class="input-group">
+            <label for="direcao">Cidade e setor onde reside o aluno:</label>
+            <select id="direcao"></select>
+        </div>
+        <div class="input-group">
+            <label for="escola">Escola para onde você deseja o transporte:</label>
+            <select id="escola"></select>
+        </div>
+        <div class="input-group">
+            <button id="solicitar-btn">Solicitar Transporte</button>
+        </div>
+        <div id="resultado"></div>
+    </div>
+    <py-script>
+        from js import document, console
+        from pyodide.ffi import create_proxy
+
+        setores_direcoes = {
+            'gama oeste': {'Cef1': 'Tio Adalto, fone: 99999-1234', 'Cef2': 'Tio Carlos, fone: 96666-8888', 'Cef5':'Tia Sol, fone: 5555-7890', 'Sesc': 'Tio Reinaldo, fone: 98527-1910'},
+            'Gama leste': {'Cef1': 'Tio Fulano de tal, fone: 96666-5588', 'Cef2': 'Albertino da Silva, fone: 97777-8888'},
+            'Gama norte': {'Cef1': 'Tio Max, fone: 95555-7777', 'Sesc': 'Tio Reinaldo, fone: 98527-1910','Adventista':'Tio Reinaldo fone: 98527-1910'},
+            'Gama sul': {'Cef1': 'Abidias, fone: 91425-3698', 'Cef4': 'Tia Ciclano, fone 92222-1111', 'Sesc': 'Tio Reinaldo, fone: 98527-1910'},
+            'gama central': {'Cef1': 'Joca, fone: 91233-4567', 'Cef4': 'Jairo, fone: 98877-4455', 'Sesc': 'Tio Reinaldo, fone: 98527-1910'},
+            'residencial santos dumont' :{'Elite' : 'Tia Márcia, fone: 98497-1203','Sesi' : 'Tia Márcia, fone: 98497-1203', 
+                            'Blue Scholl' : 'Tia Márcia, fone: 98497-1203', 'Adventista' : 'Tia Márcia, fone: 98497-1203',
+                            'Cemi' : 'Tia Márcia, fone: 98497-1203', 'Cg': 'Tia Márcia, fone: 98497-1203 e Tio Zé Maria, Fone: 99100-6568', 'Sesc': 'Tia Márcia, fone: 98497-1203'},
+            'ponte alta norte': {'Cef1': 'Tio Davis, fone: 92222-1111 e Filho Davis, fone: 93333-2222'}, 
+            'novo gama':{'Cef1': 'Tio Jacaré, fone: 97777-3333',},
+            'valparaiso':{'Cef1': 'Tio Jurandi, fone: 94444-3333',},
+            'céu azul':{'Cef1': 'Tio Jamelão, fone: 96666-5555',},
+            'lago azul':{'Cef1': 'Tio Tomate, fone: 96666-1111',},
+            'pedregal':{'Cef1': 'Tio Simoneide, fone: 96666-2222',},
+            # Adicione mais direções e escolas conforme necessário
+        }
+
+        def update_escolas(event):
+            direcao = document.getElementById('direcao').value.lower()
+            escola_select = document.getElementById('escola')
+            escola_select.innerHTML = ''
+            if direcao in setores_direcoes:
+                for escola in setores_direcoes[direcao].keys():
+                    option = document.createElement('option')
+                    option.text = escola
+                    option.value = escola
+                    escola_select.add(option)
+        
+        def solicitar_transporte(event):
+            direcao = document.getElementById('direcao').value.lower()
+            escola = document.getElementById('escola').value
+            resultado = document.getElementById('resultado')
+            if direcao in setores_direcoes and escola in setores_direcoes[direcao]:
+                motorista = setores_direcoes[direcao][escola]
+                mensagem = f"Transporte solicitado do(a) {direcao.upper()} em direção à {escola}.\nO motorista que conduz do(a) {direcao.upper()} para {escola} é {motorista}."
+            else:
+                mensagem = "Desculpe, a combinação de direção e escola informada não está disponível, verifique se os dados informados estão dentro do solicitado."
+            resultado.innerText = mensagem
+
+        direcao_select = document.getElementById('direcao')
+        for direcao in setores_direcoes.keys():
+            option = document.createElement('option')
+            option.text = direcao
+            option.value = direcao
+            direcao_select.add(option)
+
+        update_escolas_proxy = create_proxy(update_escolas)
+        direcao_select.addEventListener('change', update_escolas_proxy)
+
+        solicitar_transporte_proxy = create_proxy(solicitar_transporte)
+        document.getElementById('solicitar-btn').addEventListener('click', solicitar_transporte_proxy)
+    </py-script>
+</body>
+</html>
